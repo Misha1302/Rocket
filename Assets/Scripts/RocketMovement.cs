@@ -5,13 +5,15 @@ public class RocketMovement : MonoBehaviour
 {
     [SerializeField] private float flySpeed = 40;
     [SerializeField] private float rotateSpeed = 1000;
-    [SerializeField] private Transform massCenter;
 
     private Rigidbody _rb;
+    private RocketHealth _rocketHealth;
     private RocketUiMovement _rocketUiMovement;
 
     private void FixedUpdate()
     {
+        if (_rocketHealth.Died) return;
+
         if (_rocketUiMovement.CanFlyUp)
             FlyUp();
         if (_rocketUiMovement.CanRotateLeft)
@@ -30,10 +32,10 @@ public class RocketMovement : MonoBehaviour
         _rb.AddForce(_rb.transform.up * flySpeed);
     }
 
-    public void Init(RocketUiMovement rocketUiMovement)
+    public void Init(RocketUiMovement rocketUiMovement, RocketHealth rocketHealth)
     {
         _rocketUiMovement = rocketUiMovement;
+        _rocketHealth = rocketHealth;
         _rb = GetComponent<Rigidbody>();
-        _rb.centerOfMass = massCenter.position;
     }
 }
