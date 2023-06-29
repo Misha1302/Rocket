@@ -6,14 +6,18 @@ public class Main : MonoBehaviour
     [SerializeField] private RocketMovement rocketMovement;
     [SerializeField] private RocketParticlesManager particlesManager;
     [SerializeField] private RocketCollisionManager collisionManager;
+    [SerializeField] private RocketWinner rocketWinner;
+    [SerializeField] private RocketState rocketState;
     [SerializeField] private RocketHealth health;
     [SerializeField] private RocketDeath death;
 
     private void Start()
     {
         ScreenManager.Init();
-        particlesManager.Init(rocketUiMovement, health);
-        rocketMovement.Init(rocketUiMovement, health);
+        particlesManager.Init(rocketUiMovement, rocketState);
+        rocketMovement.Init(rocketUiMovement, rocketState);
         health.Init(collisionManager, death);
+        rocketWinner.Init(collisionManager);
+        rocketState.Init(health, rocketWinner);
     }
 }

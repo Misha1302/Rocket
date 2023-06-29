@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class RocketHealth : MonoBehaviour
 {
-    public bool Died => _health <= 0;
-    
     private RocketDeath _death;
     private float _health = 100f;
+    public bool Died => _health <= 0;
 
     public void Init(RocketCollisionManager rocketCollisionManager, RocketDeath death)
     {

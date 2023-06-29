@@ -7,12 +7,12 @@ public class RocketMovement : MonoBehaviour
     [SerializeField] private float rotateSpeed = 1000;
 
     private Rigidbody _rb;
-    private RocketHealth _rocketHealth;
+    private RocketState _rocketState;
     private RocketUiMovement _rocketUiMovement;
 
     private void FixedUpdate()
     {
-        if (_rocketHealth.Died) return;
+        if (!_rocketState.Alive) return;
 
         if (_rocketUiMovement.CanFlyUp)
             FlyUp();
@@ -32,10 +32,10 @@ public class RocketMovement : MonoBehaviour
         _rb.AddForce(_rb.transform.up * flySpeed);
     }
 
-    public void Init(RocketUiMovement rocketUiMovement, RocketHealth rocketHealth)
+    public void Init(RocketUiMovement rocketUiMovement, RocketState rocketState)
     {
         _rocketUiMovement = rocketUiMovement;
-        _rocketHealth = rocketHealth;
+        _rocketState = rocketState;
         _rb = GetComponent<Rigidbody>();
     }
 }

@@ -4,13 +4,13 @@ public class RocketParticlesManager : MonoBehaviour
 {
     public ParticleSystem particles;
     private RocketUiMovement _uiMovement;
-    private RocketHealth _health;
+    private RocketState _rocketState;
 
     private void Update()
     {
-        if (_health.Died) return;
+        if (!_rocketState.Alive) return;
         
-        if (_uiMovement != null && _uiMovement.CanFlyUp)
+        if (_uiMovement.CanFlyUp)
         {
             if (!particles.isPlaying)
                 particles.Play();
@@ -23,9 +23,9 @@ public class RocketParticlesManager : MonoBehaviour
     }
 
 
-    public void Init(RocketUiMovement uiMovement, RocketHealth health)
+    public void Init(RocketUiMovement uiMovement, RocketState rocketState)
     {
         _uiMovement = uiMovement;
-        _health = health;
+        _rocketState = rocketState;
     }
 }
