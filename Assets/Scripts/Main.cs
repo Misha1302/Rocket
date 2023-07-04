@@ -16,8 +16,8 @@ public class Main : MonoBehaviour
         ScreenManager.Init();
         particlesManager.Init(rocketUiMovement, rocketState);
         rocketMovement.Init(rocketUiMovement, rocketState);
-        health.Init(collisionManager, death);
-        rocketWinner.Init(collisionManager);
+        health.Init(collisionManager, death, rocketState);
+        rocketWinner.Init(collisionManager, rocketState);
         rocketState.Init(health, rocketWinner);
     }
 }
