@@ -1,7 +1,7 @@
-using UnityEngine;
-
 namespace Rocket
 {
+    using UnityEngine;
+
     public class RocketDeath : MonoBehaviour
     {
         [SerializeField] private ParticleSystem particles;
@@ -20,7 +20,7 @@ namespace Rocket
 
         private void DestroyRocket()
         {
-            foreach (var obj in rocketObjects) 
+            foreach (var obj in rocketObjects)
                 obj.AddComponent<Rigidbody>().AddForce(new Vector3(Random.value - 0.5f, Random.value - 0.5f, 0) * 2000);
         }
 
